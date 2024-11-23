@@ -1,0 +1,27 @@
+{% extends 'crm/base.html' %}
+    
+<html> 
+
+{% block content %}
+
+    <h3>Update your tasks here</h3>
+
+    <p> Task form</p>
+
+    <hr>
+
+    <form method="POST" autocomplete="off">
+
+        {% csrf_token %} <!--required for every model form-->
+
+        {{UpdateTask.as_p}}
+
+        <input type ="submit" value="Update task"/> <!-- for now the button will be dummy-->
+
+    </form>
+
+    
+
+{% endblock %}
+
+</html>

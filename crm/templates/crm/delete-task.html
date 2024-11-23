@@ -1,0 +1,28 @@
+{% extends 'crm/base.html' %}
+    
+<html> 
+
+{% block content %}
+
+    <h3>Delete your tasks here</h3>
+
+    <p> Task form</p>
+
+    <hr>
+
+    <form method="POST" autocomplete="off"> <!-- why are we using POST method, even though it's a delete function?-->
+
+        {% csrf_token %} <!--required for every model form-->
+
+        <p> Are you sure that you want to delete this task?</p>
+        <br>
+
+        <input type ="submit" value="Delete task"/> <!-- for now the button will be dummy-->
+
+    </form>
+
+    
+
+{% endblock %}
+
+</html>

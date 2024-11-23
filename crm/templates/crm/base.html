@@ -1,0 +1,37 @@
+<html>
+
+<h1>Website under progress</h1> 
+
+<hr> <!-- this produces horizontal line-->
+
+<!--Below we are providing links for various html pages--> 
+<!-- Pls note, these are just links, so that you can click on them to reach the desired html page-->
+<!-- once you click, urls.py file will be used to call the necessary function from view.py file-->
+<!-- that function will then determine what data to render on the html page you are trying to visit-->
+
+<a href="{% url '' %}"> Home</a>
+
+&nbsp; <!--non breaking space between the line above and below-->
+
+<a href="{% url 'create-task' %}"> Create Task</a>
+
+&nbsp;
+
+<a href="{% url 'view-tasks' %}"> View Tasks</a>
+
+&nbsp;
+
+<a href="{% url 'register' %}"> Register</a>
+
+<hr>
+
+<!-- Everything above this line will be visible on all html/templates that inherit this template -->
+
+{% block content  %}
+
+
+
+{% endblock  %}
+
+
+</html>

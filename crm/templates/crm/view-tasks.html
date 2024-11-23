@@ -1,0 +1,43 @@
+{% extends 'crm/base.html' %}
+
+<html>
+
+{% block content %}
+
+    <h3>Tasks</h3>
+
+    <hr>
+
+     
+     <br>
+     
+    {% for i in AllTasks %}
+
+        <br>
+        {{i.id}}
+        <br>
+        {{i.title}}
+        <br>
+        {{i.description}}
+        <br>
+        {{i.created}}
+        <br>
+
+        <!-- Give a link on the view-task.html page, which can be clicked to update the particular task-->
+        <!--once the link is clicked, urls.py file will determine which function() from views.py file to call-->
+        <!-- urls.py file mentions that update-task() function needs to be called. It also mentions that -->
+        <!--a key 'pk' needs to be passed while calling the function. this 'pk' is the id of the task-->
+        
+        <a href ="{% url 'update-task' i.id %}"> Update task</a>
+
+        &nbsp; <!--non breaking space between the line above and below-->
+
+        <a href ="{% url 'delete-task' i.id %}"> Delete task</a>
+
+        <br>
+    {% endfor %}
+
+
+{% endblock %}
+
+</html>

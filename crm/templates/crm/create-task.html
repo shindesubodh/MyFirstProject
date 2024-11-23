@@ -1,0 +1,38 @@
+{% extends 'crm/base.html' %}
+    
+<html> 
+
+{% block content %}
+
+    <h3>Create your tasks here</h3>
+
+    <p> Task form</p>
+
+    <hr>
+
+    <form method="POST" autocomplete="off"> <!-- here we are defining our html form-->
+                                            <!-- the imp point is that method is assigned value as POST-->
+                                            <!-- This ensures that when user submits this form, the http req-->
+                                            <!-- that will generate, it will have method = POST value-->
+                                            <!-- this criteria will be used in views.py function to determine-->
+                                            <!-- the further processing-->
+
+        {% csrf_token %} <!--It must be put in every form as mandated by Django-->
+                         <!-- it provides protection against CSRF attacks-->
+
+        <!-- If we try to render each field separately (like below), then display will look
+         very unformaated. So instead we use other parameter to display them properly
+        TaskForm.title
+        TaskForm.description
+        -->
+
+        {{ TaskForm.as_p }}
+
+        <input type ="submit" value="Submit"/> 
+
+    </form>
+
+
+{% endblock %}
+
+</html>
