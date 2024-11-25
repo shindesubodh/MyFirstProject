@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-sy_jebf!05%^s967e0sx!&hlku8#)yqgc7rv@hms2&d5_a4^4i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = [] this is the default setting of Django. But I am replacing with below line.
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
