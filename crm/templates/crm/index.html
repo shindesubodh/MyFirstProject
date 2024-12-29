@@ -1,5 +1,7 @@
 {% extends 'crm/base.html' %}
 
+{% load static %}
+
 <html>
 
 {% block content %}
@@ -7,6 +9,8 @@
     <h3>Homepage!</h3>
 
     <p> Welcome to my website</p>
+
+    <img src="{% static 'images/melon.jpeg' %}">
 
     <h5>My first name is {{first_name}}</h5> <!-- first_name is key of a dictionary passed from view.py file-->
                                             <!-- when it calls render(), so that this template can receive it-->
