@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
 from .models import task
-from .forms import TaskForm
+from .forms import TaskForm, CreateUserForm
 
 #Home page/ first page of the web application
 
@@ -118,27 +118,20 @@ def delete_task(request, pk):
 
 def register(request):
 
-    ClientList = [
+    form = CreateUserForm()
 
-            {
-                'id': '1',
-                'name': 'John',
-                'occupation': 'Engineer'
-                
-            },
-                
-            {
-                'id': '2',
-                'name': 'Kate',
-                'occupation': 'Lawyer'
-                
-            },
+    if request.method =='POST':
 
-    ]
+        form = CreateUserForm(request.POST)
 
-    context_1 = {'MainClientList': ClientList}
+        if form.is_valid():
+            form.save()
+            return HttpResponse('User Created')
+        
+    context = {'RegistrationForm': form}
 
-    return render(request, 'crm/register.html', context_1)
+    return render(request, 'crm/register.html', context)
+
 
 
 
