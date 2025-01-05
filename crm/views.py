@@ -4,7 +4,13 @@ from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
 from .models import task
-from .forms import TaskForm, CreateUserForm
+from .forms import TaskForm, CreateUserForm, LoginForm
+
+
+#Below are the various functions which will enable us in login/ Logout/ User authentication.
+from django.contrib.auth.models import auth
+from django.contrib.auth import authenticate, login, logout
+
 
 #Home page/ first page of the web application
 
@@ -126,14 +132,52 @@ def register(request):
 
         if form.is_valid():
             form.save()
-            return HttpResponse('User Created')
+            return redirect('my-login') #redirect the user to the login page
         
     context = {'RegistrationForm': form}
 
     return render(request, 'crm/register.html', context)
 
 
+# Login
 
+def my_login(request):
+
+    form = LoginForm()
+
+    # Below If stmt will be executed when a user will submit his credentials on Login page
+    if request.method == 'POST':
+
+        form = LoginForm(request, data=request.POST)
+
+        if form.is_valid():
+
+            # get the username and passwords submitted in the form
+            username_form = request.POST.get('username')
+            password_form = request.POST.get('password')
+
+            #authenticate if the submitted username and password matches with what is present in the DB
+            user = authenticate(request, username = username_form, password = password_form)
+
+            if user is not None: #i.e. the user has been successfully authenticated
+
+                auth.login(request, user) # login with the user credentials supplied
+
+                return redirect('dashboard') #redirect the user to the dashboard page
+            
+    # Below stmt will be executed when user will come to Login page.
+    # A blank Login form will be provided, so that user can submit credentials to login
+    context = {'LoginForm': form}
+
+    return render(request, 'crm/my-login.html', context)
+
+
+
+# Dashboard
+
+def dashboard(request):
+
+    return render(request, 'crm/dashboard.html')
 
 
 

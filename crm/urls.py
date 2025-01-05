@@ -21,6 +21,10 @@ path ('delete-task/<str:pk>', views.delete_task, name="delete-task"),
 
 path ('register', views.register, name= "register"),
 
+path ('my-login', views.my_login, name ="my-login"),
+
+path ('dashboard', views.dashboard, name= "dashboard"),
+
 ]
 
 
