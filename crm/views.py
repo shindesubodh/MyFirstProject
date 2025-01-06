@@ -11,6 +11,8 @@ from .forms import TaskForm, CreateUserForm, LoginForm
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login, logout
 
+#Below function will help us enforce authentication before a user can access certains pages.
+from django.contrib.auth.decorators import login_required
 
 #Home page/ first page of the web application
 
@@ -172,9 +174,21 @@ def my_login(request):
     return render(request, 'crm/my-login.html', context)
 
 
+# Logout
+
+def user_logout(request):
+
+    auth.logout(request)    # This will logout the user/ end their session
+
+    return redirect("") # redirect to home page, You can chose any other pages as well.
+
 
 # Dashboard
 
+@login_required(login_url='my-login') #This line will ensure that the function dashboard can be accessed
+                                        #only when the user is logged in. So if anyone tries to access 
+                                        # the Dashboard page without being logged in, then he will be 
+                                        # redirected to the login page.
 def dashboard(request):
 
     return render(request, 'crm/dashboard.html')
